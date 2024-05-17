@@ -4,7 +4,7 @@ Welcome to the **React Native Text Watcher** extension! This extension helps you
 
 <br/>
 <p align="center">
-  <img src="images/logo.png" alt="logo" width="300">
+  <img src="https://github.com/supSugam/react-native-text-watcher/blob/master/images/logo.png?raw=true" alt="logo" width="300">
 </p>
 
 ## Features
@@ -13,9 +13,9 @@ Welcome to the **React Native Text Watcher** extension! This extension helps you
 - ⚠️ **Text Wrapping Warnings**: Get warnings when you don't wrap text strings within a `<Text>` component.
 - 🔍 **Smart Detection**: Warns you in most cases except for function calls that return strings or string variables.
 
-|                       Problem                       | Prevention to the Problem |
-| :-------------------------------------------------: | :-----------------------: |
-| <img src="images/error.png" alt="logo" width="300"> |   ![](images/demo.png)    |
+|                                                            Problem                                                             |                                    Prevention to the Problem                                    |
+| :----------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/supSugam/react-native-text-watcher/blob/master/images/error.png?raw=true" alt="logo" width="300"> | ![](https://github.com/supSugam/react-native-text-watcher/blob/master/images/demo.png?raw=true) |
 
 ## Requirements
 
