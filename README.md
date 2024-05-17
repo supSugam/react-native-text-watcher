@@ -2,7 +2,10 @@
 
 Welcome to the **React Native Text Watcher** extension! This extension helps you catch a common mistake in React Native development by providing warnings when text strings are not wrapped within a `<Text>` component.
 
-![logo](images/logo.png)
+<br/>
+<p align="center">
+  <img src="images/logo.png" alt="logo" width="300">
+</p>
 
 ## Features
 
@@ -10,13 +13,9 @@ Welcome to the **React Native Text Watcher** extension! This extension helps you
 - ⚠️ **Text Wrapping Warnings**: Get warnings when you don't wrap text strings within a `<Text>` component.
 - 🔍 **Smart Detection**: Warns you in most cases except for function calls that return strings or string variables.
 
-## From This...
-
-![logo](images/error.png)
-
-## To This!
-
-![logo](images/demo.png)
+|                       Problem                       | Prevention to the Problem |
+| :-------------------------------------------------: | :-----------------------: |
+| <img src="images/error.png" alt="logo" width="300"> |   ![](images/demo.png)    |
 
 ## Requirements
 
@@ -52,7 +51,7 @@ This extension contributes the following settings:
 
 ## Personal Note
 
-I am fairly new to React Native. I managed to build a music app using React Native for my final year project. During that period, I often encountered this error: "Text strings must be rendered within a `<Text>` component."
+I am fairly new to React Native. I somehow managed to build a music app using React Native for my final year project. During that period, I often encountered this error: "Text strings must be rendered within a `<Text>` component."
 
 It wasn't a serious error, but it was definitely annoying when I forgot to wrap a text with the `<Text>` component. That error screen with the red header was a constant source of frustration.
 
