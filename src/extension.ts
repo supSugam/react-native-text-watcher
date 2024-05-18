@@ -3,12 +3,13 @@ import * as path from 'path';
 import * as ts from 'typescript';
 import { startValidating } from './helpers/validator';
 
-export function activate(context: vscode.ExtensionContext) {
-  const packageJsonPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath
-    ? path.join(vscode.workspace.workspaceFolders[0].uri.fsPath, 'package.json')
-    : undefined;
+export async function activate(context: vscode.ExtensionContext) {
+  const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
 
-  if (packageJsonPath && isReactNativeProject(packageJsonPath)) {
+  const shouldActivate =
+    workspaceFolder && (await isReactNativeProject(workspaceFolder));
+
+  if (shouldActivate) {
     const diagnosticsCollection = vscode.languages.createDiagnosticCollection(
       'text-string-validator'
     );
@@ -51,8 +52,16 @@ export function activate(context: vscode.ExtensionContext) {
   }
 }
 
-function isReactNativeProject(packageJsonPath: string): boolean {
-  const packageJson = require(packageJsonPath);
+async function isReactNativeProject(
+  workspaceFolder: vscode.WorkspaceFolder
+): Promise<boolean> {
+  const packageJsonPath = vscode.Uri.file(
+    path.join(workspaceFolder.uri.fsPath, 'package.json')
+  );
+  const packageJsonContent = await vscode.workspace.fs.readFile(
+    packageJsonPath
+  );
+  const packageJson = JSON.parse(packageJsonContent.toString());
   return !!packageJson.dependencies?.['react-native'];
 }
 

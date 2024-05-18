@@ -2,7 +2,7 @@
   "name": "react-native-text-watcher",
   "displayName": "React Native Text Watcher",
   "description": "Detects and Warns you unwrapped text strings in React Native projects.",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "author": {
     "name": "Sugam Subedi",
     "email": "sugamsubedi234@gmail.com"
@@ -50,6 +50,8 @@
     "vscode": "^1.89.0"
   },
   "categories": [
+    "Linters",
+    "Debuggers",
     "Other"
   ],
   "activationEvents": [
@@ -57,14 +59,6 @@
     "onLanguage:javascriptreact"
   ],
   "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "react-native-text-watcher.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
@@ -82,10 +76,10 @@
     "@typescript-eslint/parser": "^7.7.1",
     "@vscode/test-cli": "^0.0.9",
     "@vscode/test-electron": "^2.3.9",
-    "eslint": "^8.57.0",
-    "typescript": "^5.4.5"
+    "eslint": "^8.57.0"
   },
   "dependencies": {
+    "typescript": "^5.4.5",
     "vscode-languageclient": "^9.0.1"
   }
 }

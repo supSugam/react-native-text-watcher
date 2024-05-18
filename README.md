@@ -38,9 +38,6 @@ This extension contributes the following settings:
 ### 1.0.0
 
 - Initial release of React Native Text Watcher.
-
-### 1.1.0
-
 - Improved JSX parsing accuracy.
 - Enhanced warning messages.
 
