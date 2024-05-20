@@ -20,12 +20,10 @@ function isNakedText(node: ts.Node): boolean {
     return false;
   }
 
-  // Ensure that the node is directly or indirectly inside JSX portion
   if (!hasAtLeastOneJSXAncestor(node)) {
     return false;
   }
 
-  // Ensure that the node is not part of props
   if (!isNotAPartOfProps(node)) {
     return false;
   }
@@ -66,9 +64,7 @@ export function extractAllNakedTexts({
       const start = node.getStart();
       const end = node.getEnd();
 
-      // Find first non-whitespace character index from start
       const trimmedStart = content.substring(start).search(/\S/);
-      // Find last non-whitespace character index from end
       const trimmedEnd = content.substring(0, end).match(/\S\s*$/)?.index;
 
       if (trimmedStart !== -1 && trimmedEnd !== undefined) {

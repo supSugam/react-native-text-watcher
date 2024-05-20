@@ -8,14 +8,11 @@ export const startValidating = (
   diagnosticsCollection: vscode.DiagnosticCollection
 ) => {
   const diagnostics: vscode.Diagnostic[] = [];
-  // Extract all JSX portions
   const text = document.getText();
   const nakedTextsWithRange = extractAllNakedTexts({
     content: text,
     scriptKind,
   });
-
-  // Issue diagnostics warning for each naked text
 
   for (const text of nakedTextsWithRange) {
     const diagnostic = new vscode.Diagnostic(
