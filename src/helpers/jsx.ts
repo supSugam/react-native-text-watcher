@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as ts from 'typescript';
+import { getCustomTextComponents } from '../commands/manageTextComponent';
 
 interface IExtractAllJSXPortionsProps {
   content: string;
@@ -16,7 +17,9 @@ function isJsxStringLiteral(text: string): boolean {
 }
 
 function isNakedText(node: ts.Node): boolean {
-  if (!ts.isJsxText(node) && !ts.isStringLiteralLike(node)) {
+  const ALL_TAGS_TO_IGNORE = getCustomTextComponents();
+
+  if (isOneOfTheseTags(node, ALL_TAGS_TO_IGNORE)) {
     return false;
   }
 
@@ -24,15 +27,20 @@ function isNakedText(node: ts.Node): boolean {
     return false;
   }
 
+  if (ts.isCallExpression(node.parent)) {
+    return false;
+  }
+
+  if (!ts.isJsxText(node) && !ts.isStringLiteralLike(node)) {
+    return false;
+  }
+
   if (!isNotAPartOfProps(node)) {
     return false;
   }
 
-  if (isOneOfTheseTags(node, ['Text', 'TextComponent'])) {
-    return false;
-  }
-
   const text = node.getText().trim();
+
   if (text.match(/^\s*$/) !== null) {
     return false;
   }

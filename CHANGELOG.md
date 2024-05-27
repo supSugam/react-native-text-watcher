@@ -7,3 +7,8 @@ All notable changes to the "react-native-text-watcher" extension will be documen
 - Initial release of react-native-text-watcher
 - Improved JSX parsing accuracy.
 - Enhanced warning messages.
+
+## [1.0.1] - May 27, 2024
+
+- Specify custom text components to suppress text warnings for.
+- Change severity type of warnings ie. `Error`, `Warning`, `Information`, `Hint`.
