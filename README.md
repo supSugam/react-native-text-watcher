@@ -11,23 +11,35 @@ Welcome to the **React Native Text Watcher** extension! This extension helps you
 
 - 📐 **Accurate JSX Parsing**: Precisely identifies JSX portions in your code.
 - ⚠️ **Text Wrapping Warnings**: Get warnings when you don't wrap text strings within a `<Text>` component.
+- 🛞 **Custom Text Components**: Supress warnings for your custom text components.
 - 🔍 **Smart Detection**: Warns you in most cases except for function calls that return strings or string variables.
 
 |                                                               Problem                                                                |                                       Prevention to the Problem                                       |
 | :----------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: |
 | <img src="https://github.com/supSugam/react-native-text-watcher/blob/master/media/images/error.png?raw=true" alt="logo" width="300"> | ![](https://github.com/supSugam/react-native-text-watcher/blob/master/media/images/demo.png?raw=true) |
 
+</br>
+
+|                                                                 Adding Custom Text Components                                                                 |                                                            Removing Custom Text Component                                                            |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/supSugam/react-native-text-watcher/blob/master/media/gifs/add-custom-components.gif?raw=true" alt="rn-text-watcher" width="95%"> | <img src="https://github.com/supSugam/react-native-text-watcher/blob/master/media/gifs/remove-custom-components.gif?raw=true" alt="rn-text-watcher"> |
+
+|                                                           Change Severity (Warning) Typ                                                           |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/supSugam/react-native-text-watcher/blob/master/media/gifs/change-severity-type.gif?raw=true" alt="logo" width="467"> |
+
 ## Requirements
 
 - A project with `react-native` in `package.json` dependencies.
 - The extension activates only for `.tsx` and `.jsx` files.
 
-## Extension Settings
+## Extension Options
 
 This extension contributes the following settings:
 
 - `reactNativeTextWatcher.enable`: Enable/disable this extension.
-- `reactNativeTextWatcher.severity`: Set the severity of the warnings (default: `Warning`).
+- `react-native-text.changeSeverityType`: Set the severity of the warnings (default: `Warning`).
+- `react-native-text.manageTextComponents`: An array of Component Name that you want to supress text warnings for (default: `Text`).
 
 ## Known Issues
 
