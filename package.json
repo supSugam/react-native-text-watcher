@@ -28,7 +28,7 @@
       }
     ]
   },
-  "icon": "images/logo.png",
+  "icon": "media/images/logo.png",
   "keywords": [
     "react-native",
     "text-watcher",
