@@ -58,6 +58,11 @@ This extension contributes the following settings:
 - Specify custom text components to supress text warnings for.
 - Change severity type of warnings ie. `Error`, `Warning`, `Information`, `Hint`.
 
+## 1.0.2
+
+- Fix: Issue with unwanted warn on conditional text string.
+- Excluded unnecessary files from the extension (Reduced Size).
+
 ## Future Plans
 
 - 🚀 **Function Call Detection**: Introduce the ability to warn on function calls that return strings or string variables.

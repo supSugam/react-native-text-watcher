@@ -2,7 +2,7 @@
   "name": "react-native-text-watcher",
   "displayName": "React Native Text Watcher",
   "description": "Detects and Warns you unwrapped text strings in React Native projects.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": {
     "name": "Sugam Subedi",
     "email": "sugamsubedi234@gmail.com"
