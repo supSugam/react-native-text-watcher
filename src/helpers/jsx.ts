@@ -132,16 +132,8 @@ const isOneOfTheseTags = (node: ts.Node, tags: string[]): boolean => {
   if (nodeTag && tags.includes(nodeTag)) {
     return true;
   } else {
-    const nodeParentTag = tagPattern.exec(node.parent?.getText())?.[1] ?? null;
-    if (nodeParentTag && tags.includes(nodeParentTag)) {
-      return true;
-    }
-    if (isJsxStringLiteral(node.parent.getText())) {
-      const parentParentTag =
-        tagPattern.exec(node.parent?.parent?.getText())?.[1] ?? null;
-      if (parentParentTag && tags.includes(parentParentTag)) {
-        return true;
-      }
+    if (node.parent) {
+      return isOneOfTheseTags(node.parent, tags);
     }
   }
 

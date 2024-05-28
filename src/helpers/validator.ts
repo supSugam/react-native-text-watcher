@@ -17,12 +17,15 @@ export const startValidating = (
     scriptKind,
   });
 
-  const severityType = severityTypeParam ?? getSeverityType() ?? DEFAULT_SEVERITY_TYPE;
+  const severityType =
+    severityTypeParam ?? getSeverityType() ?? DEFAULT_SEVERITY_TYPE;
 
   for (const text of nakedTextsWithRange) {
     const diagnostic = new vscode.Diagnostic(
       text.range,
-      `Text string "${text.text}" must be rendered within a RN's <Text/> or one of the custom text components.`,
+      `Text string "${
+        text.text.length > 60 ? `${text.text.slice(0, 60)}...` : text.text
+      }" must be rendered within a <Text/> or one of your custom text components.`,
       severityType
     );
     diagnostics.push(diagnostic);

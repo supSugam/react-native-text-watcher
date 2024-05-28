@@ -4,7 +4,7 @@ Welcome to the **React Native Text Watcher** extension! This extension helps you
 
 <br/>
 <p align="center">
-  <img src="https://github.com/supSugam/react-native-text-watcher/blob/master/media/images/logo.png?raw=true" alt="logo" width="300">
+  <img src="https://github.com/supSugam/react-native-text-watcher/blob/master/logo.png?raw=true" alt="logo" width="300">
 </p>
 
 ## Features
@@ -24,9 +24,9 @@ Welcome to the **React Native Text Watcher** extension! This extension helps you
 | :-----------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------: |
 | <img src="https://github.com/supSugam/react-native-text-watcher/blob/master/media/gifs/add-custom-components.gif?raw=true" alt="rn-text-watcher" width="95%"> | <img src="https://github.com/supSugam/react-native-text-watcher/blob/master/media/gifs/remove-custom-components.gif?raw=true" alt="rn-text-watcher"> |
 
-|                                                           Change Severity (Warning) Typ                                                           |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://github.com/supSugam/react-native-text-watcher/blob/master/media/gifs/change-severity-type.gif?raw=true" alt="logo" width="467"> |
+|                                                                Change Severity (Warning) Type                                                                |                                                       Manual Configuration (.vscode/settings.json)                                                       |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/supSugam/react-native-text-watcher/blob/master/media/gifs/change-severity-type.gif?raw=true" alt="rn-text-watcher" width="485"> | <img src="https://github.com/supSugam/react-native-text-watcher/blob/master/media/images/settings-json.png?raw=true" width="100%" alt="rn-text-watcher"> |
 
 ## Requirements
 
@@ -38,7 +38,7 @@ Welcome to the **React Native Text Watcher** extension! This extension helps you
 This extension contributes the following settings:
 
 - `reactNativeTextWatcher.enable`: Enable/disable this extension.
-- `react-native-text.changeSeverityType`: Set the severity of the warnings (default: `Warning`).
+- `react-native-text.changeSeverityType`: Set the severity of the warnings: `Error`, `Warning`, `Information`, `Hint` (default: `Warning`).
 - `react-native-text.manageTextComponents`: An array of Component Name that you want to supress text warnings for (default: `Text`).
 
 ## Known Issues
