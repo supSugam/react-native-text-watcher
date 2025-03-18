@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
-import { ScriptKind } from 'typescript';
-import { extractAllNakedTexts } from './jsx';
+import { extractAllNakedTexts, ScriptKind } from './jsx';
 import { getSeverityType } from '../commands/changeSeverityType';
 import { DEFAULT_SEVERITY_TYPE } from '../utils/constants';
 

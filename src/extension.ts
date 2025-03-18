@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
-import * as ts from 'typescript';
+import * as fs from 'fs';
 import { startValidating } from './helpers/validator';
 import {
   DiagnosticSeverityAsString,
@@ -11,13 +11,40 @@ import { ActionEnum } from './enum/ActionEnum';
 import { onManageTextComonentAction } from './commands/manageTextComponent';
 import { changeSeverityType } from './commands/changeSeverityType';
 
+function getUserTypescript(project: string): any | null {
+  try {
+    const tsPath = path.join(project, 'node_modules', 'typescript');
+    if (fs.existsSync(tsPath)) {
+      return require(tsPath);
+    }
+    return null;
+  } catch (error) {
+    console.error("Could not load user's TypeScript:", error);
+    return null;
+  }
+}
+
+// Usage
+export let ts: any | null = null;
+
 export async function activate(context: vscode.ExtensionContext) {
-  const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+  const workspaceFolders = vscode.workspace.workspaceFolders;
+  if (!workspaceFolders) {
+    vscode.window.showErrorMessage('No workspace folder open.');
+    throw new Error('No workspace folder open.');
+  }
 
-  const shouldActivate =
-    workspaceFolder && (await isReactNativeProject(workspaceFolder));
-
-  if (!shouldActivate) return;
+  const project = await getReactNativeProject(workspaceFolders);
+  if (!project) return;
+  ts = getUserTypescript(project);
+  if (!ts) {
+    vscode.window.showErrorMessage(
+      'TypeScript not found in your workspace. Please install it.'
+    );
+    throw new Error(
+      'TypeScript not found in your workspace. Please install it.'
+    );
+  }
   const diagnosticsCollection =
     vscode.languages.createDiagnosticCollection(extensionId);
 
@@ -118,17 +145,47 @@ export async function activate(context: vscode.ExtensionContext) {
   );
 }
 
-async function isReactNativeProject(
-  workspaceFolder: vscode.WorkspaceFolder
-): Promise<boolean> {
-  const packageJsonPath = vscode.Uri.file(
-    path.join(workspaceFolder.uri.fsPath, 'package.json')
-  );
-  const packageJsonContent = await vscode.workspace.fs.readFile(
-    packageJsonPath
-  );
-  const packageJson = JSON.parse(packageJsonContent.toString());
-  return !!packageJson.dependencies?.['react-native'];
+async function getReactNativeProject(
+  workspaceFolders: readonly vscode.WorkspaceFolder[]
+): Promise<string | null> {
+  if (!workspaceFolders?.length) return null;
+
+  const rootPath = workspaceFolders[0].uri.fsPath;
+  const paths: string[] = [rootPath];
+
+  try {
+    const items = fs.readdirSync(rootPath, { withFileTypes: true });
+
+    items.forEach((item) => {
+      if (item.isDirectory() && !item.name.startsWith('.')) {
+        paths.push(path.join(rootPath, item.name));
+      }
+    });
+  } catch (err) {
+    console.error('Error reading directory:', err);
+  }
+
+  for (const folder of paths) {
+    const packageJsonPath = vscode.Uri.file(path.join(folder, 'package.json'));
+
+    try {
+      const packageJsonContent = await vscode.workspace.fs.readFile(
+        packageJsonPath
+      );
+      const packageJson = JSON.parse(packageJsonContent.toString());
+
+      if (
+        packageJson.dependencies?.['react-native'] &&
+        packageJson.devDependencies?.['typescript']
+      ) {
+        return folder; // Found a React Native project
+      }
+    } catch (err) {
+      // Ignore missing package.json files
+    }
+  }
+
+  return null;
 }
 
 export function deactivate() {}

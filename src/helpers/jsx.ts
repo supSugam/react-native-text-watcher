@@ -1,10 +1,12 @@
 import * as vscode from 'vscode';
-import * as ts from 'typescript';
 import { getCustomTextComponents } from '../commands/manageTextComponent';
+import { ts } from '../extension';
+export type ScriptKind = any;
+type Node = any;
 
 interface IExtractAllJSXPortionsProps {
   content: string;
-  scriptKind: ts.ScriptKind;
+  scriptKind: ScriptKind;
 }
 
 interface INakedTextWithRange {
@@ -16,7 +18,12 @@ function isJsxStringLiteral(text: string): boolean {
   return text.match(/\{(?:['"`])(.*?)(?:['"`])\}/g) !== null;
 }
 
-function isNakedText(node: ts.Node): boolean {
+function isNakedText(node: Node): boolean {
+  if (!ts) {
+    throw new Error(
+      'TypeScript not found in your workspace. Please install it.'
+    );
+  }
   const ALL_TAGS_TO_IGNORE = getCustomTextComponents();
 
   if (isOneOfTheseTags(node, ALL_TAGS_TO_IGNORE)) {
@@ -58,6 +65,10 @@ export function extractAllNakedTexts({
   content,
   scriptKind,
 }: IExtractAllJSXPortionsProps): INakedTextWithRange[] {
+  if (!ts) {
+    console.error('TypeScript not found in your workspace. Please install it.');
+    return [];
+  }
   const nakedTexts: INakedTextWithRange[] = [];
   const sourceFile = ts.createSourceFile(
     'temp.tsx',
@@ -67,7 +78,7 @@ export function extractAllNakedTexts({
     scriptKind
   );
 
-  function visit(node: ts.Node) {
+  function visit(node: Node) {
     if (isNakedText(node)) {
       const start = node.getStart();
       const end = node.getEnd();
@@ -105,7 +116,12 @@ export function extractAllNakedTexts({
   return nakedTexts;
 }
 
-const hasAtLeastOneJSXAncestor = (node: ts.Node): boolean => {
+const hasAtLeastOneJSXAncestor = (node: Node): boolean => {
+  if (!ts) {
+    throw new Error(
+      'TypeScript not found in your workspace. Please install it.'
+    );
+  }
   if (ts.isJsxElement(node) || ts.isJsxSelfClosingElement(node)) {
     return true;
   }
@@ -115,7 +131,12 @@ const hasAtLeastOneJSXAncestor = (node: ts.Node): boolean => {
   return false;
 };
 
-const isNotAPartOfProps = (node: ts.Node): boolean => {
+const isNotAPartOfProps = (node: Node): boolean => {
+  if (!ts) {
+    throw new Error(
+      'TypeScript not found in your workspace. Please install it.'
+    );
+  }
   if (ts.isJsxAttribute(node)) {
     return false;
   }
@@ -125,7 +146,7 @@ const isNotAPartOfProps = (node: ts.Node): boolean => {
   return true;
 };
 
-const isOneOfTheseTags = (node: ts.Node, tags: string[]): boolean => {
+const isOneOfTheseTags = (node: Node, tags: string[]): boolean => {
   const tagPattern = /<([^\/\s>]+)/;
   const nodeTag = tagPattern.exec(node.getText())?.[1] ?? null;
 

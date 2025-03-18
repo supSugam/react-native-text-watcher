@@ -32,6 +32,7 @@ Welcome to the **React Native Text Watcher** extension! This extension helps you
 
 - A project with `react-native` in `package.json` dependencies.
 - The extension activates only for `.tsx` and `.jsx` files.
+- TypeScript Installed in your `node_modules`.
 
 ## Extension Options
 
@@ -62,6 +63,12 @@ This extension contributes the following settings:
 
 - Fix: Issue with unwanted warn on conditional text string.
 - Excluded unnecessary files from the extension (Reduced Size).
+
+## 1.0.3
+
+- NEW: This version only works if you have TypeScript installed as `devDependencies`.
+- Works on mono-repos, the extension will activate when for the first project folder that has `react-native` and `typescript`.
+- Super Lightweight, Extension Size is not 782KiB Only, Reduced by 86.83% 🚀
 
 ## Future Plans
 
