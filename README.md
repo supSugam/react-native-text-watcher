@@ -48,27 +48,27 @@ This extension contributes the following settings:
 
 ## Release Notes
 
-### 1.0.0
+### 1.0.3 [Latest]
 
-- Initial release of React Native Text Watcher.
-- Improved JSX parsing accuracy.
-- Enhanced warning messages.
+- NEW: This version only works if you have TypeScript installed as `devDependencies`.
+- Works on mono-repos, the extension will activate when for the first project folder that has `react-native` and `typescript`.
+- Super Lightweight, Extension Size is not 782KiB Only, Reduced by 86.83% 🚀
+
+### 1.0.2
+
+- Fix: Issue with unwanted warn on conditional text string.
+- Excluded unnecessary files from the extension (Reduced Size).
 
 ### 1.0.1
 
 - Specify custom text components to supress text warnings for.
 - Change severity type of warnings ie. `Error`, `Warning`, `Information`, `Hint`.
 
-## 1.0.2
+### 1.0.0
 
-- Fix: Issue with unwanted warn on conditional text string.
-- Excluded unnecessary files from the extension (Reduced Size).
-
-## 1.0.3
-
-- NEW: This version only works if you have TypeScript installed as `devDependencies`.
-- Works on mono-repos, the extension will activate when for the first project folder that has `react-native` and `typescript`.
-- Super Lightweight, Extension Size is not 782KiB Only, Reduced by 86.83% 🚀
+- Initial release of React Native Text Watcher.
+- Improved JSX parsing accuracy.
+- Enhanced warning messages.
 
 ## Future Plans
 
